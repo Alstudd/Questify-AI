@@ -56,7 +56,7 @@ const HeroContent = () => {
           variants={slideInFromLeft(1)}
           className="py-3 button-primary text-center text-white cursor-pointer rounded-lg max-w-[200px]"
         >
-          Sign Up
+          Sign In With Google
         </motion.button>
       </div>
 

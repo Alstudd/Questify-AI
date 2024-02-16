@@ -14,7 +14,7 @@ import axios from "axios";
 import { z } from "zod";
 import { BarChart, ChevronRight, Loader2, Timer } from 'lucide-react';
 import MCQCounter from './MCQCounter';
-import { checkAnswerSchema } from '@/schemas/forms/quiz';
+import { checkAnswerSchema, endGameSchema } from '@/schemas/forms/quiz';
 import { useToast } from './ui/use-toast';
 import { cn, formatTimeDelta } from '@/lib/utils';
 import { differenceInSeconds } from "date-fns";
@@ -45,6 +45,16 @@ const OpenEnded = ({ game }: Props) => {
     return game.questions[questionIndex];
   }, [questionIndex, game.questions]);
 
+  const { mutate: endGame } = useMutation({
+    mutationFn: async () => {
+      const payload: z.infer<typeof endGameSchema> = {
+        gameId: game.id,
+      };
+      const response = await axios.post("/api/endGame", payload);
+      return response.data;
+    },
+  });
+
   const { mutate: checkAnswer } = useMutation({
     mutationFn: async () => {
       setIsLoading(true)
@@ -72,13 +82,14 @@ const OpenEnded = ({ game }: Props) => {
           description: "Answers are matched based on similarity comparisons",
         })
         if (questionIndex === game.questions.length - 1) {
+          endGame()
           setHasEnded(true)
           return
         }
         setQuestionIndex((prev) => prev + 1)
       }
     })
-  }, [checkAnswer, toast, isLoading, questionIndex, game.questions.length]);
+  }, [checkAnswer, toast, isLoading, questionIndex, game.questions.length, endGame]);
 
   React.useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {

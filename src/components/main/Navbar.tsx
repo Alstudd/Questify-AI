@@ -1,5 +1,7 @@
+"use client";
 import { Socials } from "@/constants";
 import { Mail, Phone } from "lucide-react";
+import { signIn } from "next-auth/react";
 import Image from "next/image";
 import React from "react";
 
@@ -40,18 +42,14 @@ const Navbar = () => {
 
         <div className="md:block hidden">
         <div className="flex my-auto flex-row gap-5">
-          <a
-            href="mailto:alphamatics4me@gmail.com"
-            className="block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 "
-          >
-            <Mail />
-          </a>
-          <a
-            href="mailto:alphamatics4me@gmail.com"
-            className="block py-2 px-3 my-auto text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 "
-          >
-            <Phone size={20} />
-          </a>
+        <button
+        onClick={()=> {
+          signIn('google').catch(console.error);
+      }}
+          className="py-3 button-primary text-center text-white cursor-pointer rounded-lg w-[100px]"
+        >
+          Sign In
+        </button>
         </div>
         </div>
       </div>

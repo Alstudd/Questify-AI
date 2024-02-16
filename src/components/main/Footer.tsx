@@ -64,7 +64,7 @@ const Footer = () => {
             </div>
 
             <div className="mb-[20px] text-[15px] text-center">
-                &copy; Alstudd
+                &copy; Questify AI
             </div>
         </div>
     </div>
