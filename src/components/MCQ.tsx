@@ -12,11 +12,12 @@ import { Button, buttonVariants } from "./ui/button";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { z } from "zod";
-import { ChevronRight, Loader2, Timer } from 'lucide-react';
+import { BarChart, ChevronRight, Loader2, Timer } from 'lucide-react';
 import MCQCounter from './MCQCounter';
 import { checkAnswerSchema } from '@/schemas/forms/quiz';
 import { useToast } from './ui/use-toast';
-
+import { cn, formatTimeDelta } from '@/lib/utils';
+import { differenceInSeconds } from "date-fns";
 
 type Props = {
     game: Game & { questions: Pick<Question, "id" | "options" | "question">[] };
@@ -29,7 +30,16 @@ const MCQ = ({ game }: Props) => {
     const [wrongAnswers, setWrongAnswers] = React.useState<number>(0);
     const [isLoading, setIsLoading] = useState(false);
     const [hasEnded, setHasEnded] = React.useState<boolean>(false);
+    const [now, setNow] = React.useState<Date>(new Date());
     const {toast} = useToast();
+    React.useEffect(() => {
+        const interval = setInterval(() => {
+            if (!hasEnded) setNow(new Date())
+        }, 1000);
+        return () => {
+            clearInterval(interval);
+        }
+    }, [hasEnded])
 
     const currentQuestion = React.useMemo(() => {
         return game.questions[questionIndex];
@@ -103,8 +113,22 @@ const MCQ = ({ game }: Props) => {
     }, [currentQuestion]);
 
     if (hasEnded) {
-        return 
-    }
+        return (
+          <div className="absolute flex flex-col justify-center -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
+            <div className="px-4 py-2 mt-2 font-semibold text-white bg-green-500 rounded-md whitespace-nowrap">
+              You Completed in {formatTimeDelta(differenceInSeconds(now, game.timeStarted))}
+            </div>
+            <Link
+              href={`/statistics/${game.id}`}
+              className={cn(buttonVariants({ size: "lg" }), "mt-2")}
+            >
+              View Statistics
+              <BarChart className="w-4 h-4 ml-2" />
+            </Link>
+          </div>
+        );
+      }
+    
 
     return (
         <div className="absolute -translate-x-1/2 -translate-y-1/2 md:w-[80vw] max-w-4xl w-[90vw] top-1/2 left-1/2">
@@ -119,7 +143,7 @@ const MCQ = ({ game }: Props) => {
                     </p>
                     <div className="flex self-start mt-3 text-slate-400">
                         <Timer className="mr-2" />
-                        <span>00:00</span>
+                        {formatTimeDelta(differenceInSeconds(now, game.timeStarted))}
                     </div>
                 </div>
                 <MCQCounter
