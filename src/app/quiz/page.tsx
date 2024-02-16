@@ -1,3 +1,4 @@
+import Navbar from '@/components/Navbar'
 import QuizCreation from '@/components/QuizCreation'
 import { getAuthSession } from '@/lib/nextauth'
 import { redirect } from 'next/navigation'
@@ -11,7 +12,10 @@ const page = async (props: Props) => {
         return redirect("/")
     }
   return (
-    <QuizCreation />
+    <div>
+      <Navbar />
+      <QuizCreation />
+    </div>
   )
 }
 

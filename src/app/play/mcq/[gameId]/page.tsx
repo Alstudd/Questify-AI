@@ -1,4 +1,5 @@
 import MCQ from "@/components/MCQ";
+import Navbar from "@/components/Navbar";
 import { prisma } from "@/lib/db";
 import { getAuthSession } from "@/lib/nextauth";
 import { redirect } from "next/navigation";
@@ -33,7 +34,10 @@ const MCQPage = async ({ params: { gameId } }: Props) => {
   if (!game || game.gameType === "open_ended") {
     return redirect("/quiz");
   }
-  return <MCQ game={game} />;
+  return <div>
+    <Navbar />
+    <MCQ game={game} />
+  </div>;
 };
 
 export default MCQPage;
