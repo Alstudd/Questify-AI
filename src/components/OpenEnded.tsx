@@ -25,6 +25,7 @@ type Props = {
 };
 
 const OpenEnded = ({ game }: Props) => {
+  const [blankAnswer, setBlankAnswer] = useState<string>('')
   const [questionIndex, setQuestionIndex] = React.useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [hasEnded, setHasEnded] = React.useState<boolean>(false);
@@ -47,9 +48,14 @@ const OpenEnded = ({ game }: Props) => {
   const { mutate: checkAnswer } = useMutation({
     mutationFn: async () => {
       setIsLoading(true)
+      let filledAnswer = blankAnswer
+      document.querySelectorAll('#user-blank-input').forEach(input => {
+        filledAnswer = filledAnswer.replace("_____", input.value)
+        input.value = ''
+      })
       const payload: z.infer<typeof checkAnswerSchema> = {
         questionId: currentQuestion.id,
-        userInput: '',
+        userInput: filledAnswer,
       }
       const response = await axios.post("/api/checkAnswer", payload);
       setIsLoading(false)
@@ -86,6 +92,23 @@ const OpenEnded = ({ game }: Props) => {
     }
   }, [handleNext])
 
+  if (hasEnded) {
+    return (
+      <div className="absolute flex flex-col justify-center -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
+        <div className="px-4 py-2 mt-2 font-semibold text-white bg-green-500 rounded-md whitespace-nowrap">
+          You Completed in {formatTimeDelta(differenceInSeconds(now, game.timeStarted))}
+        </div>
+        <Link
+          href={`/statistics/${game.id}`}
+          className={cn(buttonVariants({ size: "lg" }), "mt-2")}
+        >
+          View Statistics
+          <BarChart className="w-4 h-4 ml-2" />
+        </Link>
+      </div>
+    );
+  }
+
   return (
     <div className="absolute -translate-x-1/2 -translate-y-1/2 md:w-[80vw] max-w-4xl w-[90vw] top-1/2 left-1/2">
       <div className="flex flex-row justify-between">
@@ -121,7 +144,7 @@ const OpenEnded = ({ game }: Props) => {
         </CardHeader>
       </Card>
       <div className="flex flex-col items-center justify-center w-full mt-4">
-        <BlankAnswerInput answer={currentQuestion.answer} />
+        <BlankAnswerInput answer={currentQuestion.answer} setBlankAnswer={setBlankAnswer} />
         <Button
           variant="default"
           className="mt-2"
