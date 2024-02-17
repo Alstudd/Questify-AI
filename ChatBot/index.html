@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gemini Chatbot</title> 
+    <link href="./style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  </head>
+  <body class="w-full min-h-screen flex flex-col p-3">
+      <!-- <main className="w-[80%] mx-auto bg-gemLight min-h-[calc(100vh-9rem)] max-h-[calc(100vh-9rem)] flex flex-col">
+        <header className="p-2 bg-gemRegular flex gap-5 items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bot"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
+          <h1 className="text-gemDeep text-lg font-medium bg-red-950">
+            Questify AI Chatbot
+          </h1>
+        </header>
+
+        <div className="flex-1 overflow-y-auto">
+          <div className="p-2 flex flex-col gap-4" id="chat-container"></div>
+        </div>
+
+        <form action="" method="post" className="" id="chat-form">
+          <div className="relative">
+            <div className="absolute left-0 top-3 ps-3.5 pointer-events-none">
+              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bot"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
+            </div>
+            <input
+              name="prompt"
+              id="prompt"
+              className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="Enter your question here..."
+              required
+            />
+            <button
+              type="submit"
+              className="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            >
+              Send
+            </button>
+          </div>
+        </form>
+      </main> -->
+    <section>
+      <div class="container">
+        <div class="d-flex align-items-center gap-3">
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bot"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
+          <h5 className="text-gemDeep text-lg font-medium bg-red-950 mb-0 ps-4">
+            Questify AI Chatbot
+          </div>
+        </h5>
+        <div class="card mt-4 shadow-md rounded-5">
+          <div class="card-body">
+            <div class="flex flex-col">
+              <div id="chat-container" class="" style="height: calc(100vh * 0.75); overflow-y: auto"></div>
+              <div class="w-100 p-2 flex border-bottom rounded-pill shadow-md px-3">
+                <form action="" method="post"  class="w-100 flex" id="chat-form" >
+                  <input placeholder="Ask your question?" type="text" name="" id="prompt" style="outline: none;" class="w-100 p-1 pb-0">
+                  <button class="btn btn-primary" type="submit">Send</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </section>
+      <script type="module" src="/main.js"></script>
+  </body>
+</html>
