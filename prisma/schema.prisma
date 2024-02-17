@@ -102,3 +102,51 @@ model Question {
 
   @@map("questions")
 }
+
+// course contains many units
+model Course {
+  id    String @id @default(auto()) @map("_id") @db.ObjectId
+  name  String
+  image String
+  units Unit[]
+
+  @@map("courses")
+}
+
+// unit contains many chapters
+model Unit {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  courseId String @db.ObjectId
+
+  name     String
+  course   Course    @relation(fields: [courseId], references: [id])
+  chapters Chapter[]
+
+  @@map("units")
+}
+
+model Chapter {
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  unitId String @db.ObjectId
+
+  name               String
+  youtubeSearchQuery String
+  videoId            String?
+  summary            String?    
+  unit               Unit       @relation(fields: [unitId], references: [id])
+  quests          Quest[]
+
+  @@map("chapters")
+}
+
+model Quest {
+  id        String @id @default(auto()) @map("_id") @db.ObjectId
+  chapterId String @db.ObjectId
+
+  question String
+  answer   String
+  options  String
+  chapter  Chapter @relation(fields: [chapterId], references: [id])
+
+  @@map("quests")
+}
