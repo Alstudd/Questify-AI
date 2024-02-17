@@ -20,9 +20,9 @@ export type ChapterCardHandler = {
 
 const ChapterCard = React.forwardRef<ChapterCardHandler, Props>(
   ({ chapter, chapterIndex, setCompletedChapters, completedChapters }, ref) => {
+    const [isLoading, setIsLoading] = React.useState(false);
     const { toast } = useToast();
     const [success, setSuccess] = React.useState<boolean | null>(null);
-    const [isLoading, setIsLoading] = React.useState(false);
     const { mutate: getChapterInfo } = useMutation({
       mutationFn: async () => {
         setIsLoading(true);
