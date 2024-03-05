@@ -40,7 +40,7 @@ export default async function Home() {
     //   </Card>
     // </div>
     // </div>
-    <div className="bg-[#030014] overflow-y-scroll overflow-x-hidden">
+    <div className="bg-[#030014]">
       <StarsCanvas />
       <Navbar />
       <main className="h-full w-full">

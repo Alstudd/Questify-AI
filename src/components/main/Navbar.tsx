@@ -4,8 +4,11 @@ import { Mail, Phone } from "lucide-react";
 import { signIn } from "next-auth/react";
 import Image from "next/image";
 import React from "react";
+import { useTheme } from "next-themes";
 
 const Navbar = () => {
+  const { setTheme } = useTheme();
+  setTheme("dark");
   return (
     <div className="w-full h-[65px] fixed top-0 shadow-lg shadow-[#2A0E61]/50 bg-[#03001417] backdrop-blur-md z-50 md:px-10 px-0">
       <div className="w-full h-full flex flex-row items-center justify-between m-auto px-[10px]">
@@ -26,7 +29,7 @@ const Navbar = () => {
           </span>
         </a>
 
-        <div className="w-[500px] h-full flex flex-row items-center justify-between md:mr-20">
+        <div className="w-[500px] h-full flex flex-row items-center justify-between md:mr-12">
           <div className="flex items-center justify-between w-full h-auto border border-[#7042f861] bg-[#0300145e] mr-[15px] px-[20px] py-[10px] rounded-full text-gray-200">
             <a href="/classroom" className="cursor-pointer">
               Classroom
