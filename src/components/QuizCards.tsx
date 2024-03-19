@@ -1,6 +1,6 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { Chapter, Question } from "@prisma/client";
+import { Chapter, Quest } from "@prisma/client";
 import React from "react";
 import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
 import { Label } from "./ui/label";
@@ -9,7 +9,7 @@ import { ChevronRight } from "lucide-react";
 
 type Props = {
   chapter: Chapter & {
-    questions: Question[];
+    quests: Quest[];
   };
 };
 
@@ -20,7 +20,7 @@ const QuizCards = ({ chapter }: Props) => {
   >({});
   const checkAnswer = React.useCallback(() => {
     const newQuestionState = { ...questionState };
-    chapter.questions.forEach((question) => {
+    chapter.quests.forEach((question) => {
       const user_answer = answers[question.id];
       if (!user_answer) return;
       if (user_answer === question.answer) {
@@ -30,12 +30,12 @@ const QuizCards = ({ chapter }: Props) => {
       }
       setQuestionState(newQuestionState);
     });
-  }, [answers, questionState, chapter.questions]);
+  }, [answers, questionState, chapter.quests]);
   return (
     <div className="flex-[1] mt-16 ml-8">
       <h1 className="text-2xl font-bold">Concept Check</h1>
       <div className="mt-2">
-        {chapter.questions.map((question) => {
+        {chapter.quests.map((question) => {
           const options = JSON.parse(question.options) as string[];
           return (
             <div

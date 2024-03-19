@@ -1,5 +1,6 @@
 import CourseSideBar from "@/components/CourseSideBar";
 import MainVideoSummary from "@/components/MainVideoSummary";
+import Navbar from "@/components/Navbar";
 import QuizCards from "@/components/QuizCards";
 import { prisma } from "@/lib/db";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -45,6 +46,7 @@ const CoursePage = async ({ params: { slug } }: Props) => {
   const prevChapter = unit.chapters[chapterIndex - 1];
   return (
     <div>
+      <Navbar />
       <CourseSideBar course={course} currentChapterId={chapter.id} />;
       <div>
         <div className="ml-[400px] px-8">

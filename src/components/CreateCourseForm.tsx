@@ -16,17 +16,17 @@ import { useToast } from "./ui/use-toast";
 import { useRouter } from "next/navigation";
 import { set } from "date-fns";
 
-type Props = { };
+type Props = {};
 
 type Input = z.infer<typeof createChaptersSchema>;
 
 const CreateCourseForm = (props: Props) => {
-    const [isLoading, setIsLoading] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(false);
   const router = useRouter();
   const { toast } = useToast();
   const { mutate: createChapters } = useMutation({
     mutationFn: async ({ title, units }: Input) => {
-        setIsLoading(true);
+      setIsLoading(true);
       const response = await axios.post("/api/course/createChapters", {
         title,
         units,

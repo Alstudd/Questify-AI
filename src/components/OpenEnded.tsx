@@ -59,16 +59,17 @@ const OpenEnded = ({ game }: Props) => {
     mutationFn: async () => {
       setIsLoading(true)
       let filledAnswer = blankAnswer
-      document.querySelectorAll('#user-blank-input').forEach(input => {
-        filledAnswer = filledAnswer.replace("_____", input.value)
-        input.value = ''
-      })
+      document.querySelectorAll('#user-blank-input').forEach((input: Element) => {
+        const inputValue = (input as HTMLInputElement).value;
+        filledAnswer = filledAnswer.replace("_____", inputValue);
+        (input as HTMLInputElement).value = '';
+      });
       const payload: z.infer<typeof checkAnswerSchema> = {
         questionId: currentQuestion.id,
         userInput: filledAnswer,
-      }
+      };
       const response = await axios.post("/api/checkAnswer", payload);
-      setIsLoading(false)
+      setIsLoading(false);
       return response.data;
     },
   });

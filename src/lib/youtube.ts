@@ -1,6 +1,6 @@
 import axios from "axios";
 import { YoutubeTranscript } from "youtube-transcript";
-import { strict_output } from "./gpt";
+import { strict_output } from "./courseGpt";
 
 export async function searchYoutube(searchQuery: string) {
   // hello world => hello+world
@@ -8,16 +8,39 @@ export async function searchYoutube(searchQuery: string) {
   const { data } = await axios.get(
     `https://www.googleapis.com/youtube/v3/search?key=${process.env.YOUTUBE_API_KEY}&q=${searchQuery}&videoDuration=medium&videoEmbeddable=true&type=video&maxResults=5`
   );
+  console.log(data);
+  if (!data || !data.items || data.items.length === 0) {
+    console.log("No data received from YouTube API");
+    return null;
+  }
   if (!data) {
     console.log("youtube fail");
     return null;
   }
-  if (data.items[0] == undefined) {
+  if (data.items[0] == undefined) { // if (data.items[0] === undefined) {
     console.log("youtube fail");
     return null;
   }
+  console.log(data.items[0].id.videoId);
   return data.items[0].id.videoId;
 }
+
+// export async function searchYoutube(searchQuery: string) {
+//   searchQuery = searchQuery.replaceAll(" ", "+");
+//   console.count("youtube search");
+//   const { data } = await axios.get(
+//     `https://www.googleapis.com/youtube/v3/search?key=${process.env.YOUTUBE_API_KEY}&q=${searchQuery}&videoDuration=medium&videoEmbeddable=true&type=video&maxResults=5`
+//   );
+//   if (!data) {
+//     console.log("youtube fail");
+//     return null;
+//   }
+//   if (data.items[0] == undefined) {
+//     console.log("youtube fail");
+//     return null;
+//   }
+//   return data.items[0].id.videoId;
+// }
 
 export async function getTranscript(videoId: string) {
   try {

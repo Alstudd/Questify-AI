@@ -38,7 +38,17 @@ const UserAccountNav = ({ user }: Props) => {
         </div>
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild>
-          <Link className="dark:text-black" href="/">Home</Link>
+          <Link className="text-black" href="/">Home</Link>
+        </DropdownMenuItem>
+
+        <DropdownMenuSeparator />
+        <DropdownMenuItem asChild>
+          <Link className="text-black" href="/chatbot">Chatbot</Link>
+        </DropdownMenuItem>
+
+        <DropdownMenuSeparator />
+        <DropdownMenuItem asChild>
+          <Link className="text-black" href="https://intelliquest-videochat.netlify.app/" target="_blank">Video Chat</Link>
         </DropdownMenuItem>
 
         <DropdownMenuSeparator />

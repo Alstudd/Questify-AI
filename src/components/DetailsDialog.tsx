@@ -8,7 +8,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Github, HelpCircle, Youtube } from "lucide-react";
+import { Github, HelpCircle, Instagram } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -25,28 +25,28 @@ const DetailsDialog = (props: Props) => {
       </DialogTrigger>
       <DialogContent className="w-[70vw] max-w-[100vw] md:w-[50vw]">
         <DialogHeader>
-          <DialogTitle className="text-2xl">Welcome to Questify!</DialogTitle>
+          <DialogTitle className="text-2xl">Welcome to IntelliQuest!</DialogTitle>
           <DialogDescription>
-            {/* <div className="flex items-center gap-3 my-2">
+            <div className="flex items-center gap-3 my-2">
               <p className="flex items-center">
                 <Github className="w-5 h-5" />
                 <Link
                   className="ml-1 underline"
-                  href="https://github.com/elliott-chong/Quizzzy"
+                  href="https://github.com/Alstudd"
                 >
                   GitHub
                 </Link>
               </p>
               <p className="flex items-center">
-                <Youtube className="w-5 h-5" />
+                <Instagram className="w-5 h-5" />
                 <Link
                   className="ml-1 underline"
-                  href="https://youtuxbe.com/@elliottchong"
+                  href="https://instagram.com/alstonsoares17"
                 >
-                  YouTube
+                  Instagram
                 </Link>
               </p>
-            </div> */}
+            </div>
             <p className="my-2 mt-4 ">
               Are you tired of boring and repetitive quizzes? Say goodbye to
               the ordinary and embrace the extraordinary with Questify! Our

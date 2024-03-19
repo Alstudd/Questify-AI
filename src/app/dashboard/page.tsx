@@ -7,6 +7,8 @@ import HotTopicsCard from "@/components/dashboard/HotTopicsCard";
 import QuizMeCard from "@/components/dashboard/QuizMeCard";
 import RecentActivityCard from "@/components/dashboard/RecentActivityCard";
 import Navbar from '@/components/Navbar';
+import CreateACourseCard from '@/components/dashboard/CreateACourseCard';
+import CourseGalleryCard from '@/components/dashboard/CourseGalleryCard';
 
 type Props = {}
 
@@ -29,6 +31,10 @@ const page = async (props: Props) => {
           <DetailsDialog />
         </div>
 
+        <div className="grid gap-4 mt-4 md:grid-cols-2 lg:grid-cols-7">
+          <CreateACourseCard />
+          <CourseGalleryCard />
+        </div>
         <div className="grid gap-4 mt-4 md:grid-cols-2">
           <QuizMeCard />
           <HistoryCard />

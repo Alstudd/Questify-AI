@@ -25,7 +25,7 @@ const Navbar = () => {
           />
 
           <span className="font-bold ml-[10px] hidden md:block text-gray-300">
-            Questify AI
+            IntelliQuest
           </span>
         </a>
 
@@ -46,8 +46,9 @@ const Navbar = () => {
         <div className="md:block hidden">
         <div className="flex my-auto flex-row gap-5">
         <button
-        onClick={()=> {
-          signIn('google').catch(console.error);
+        onClick={(e)=> {
+          e.preventDefault();
+          signIn('google', { callbackUrl: process.env.NEXTAUTH_URL });
       }}
           className="py-3 button-primary text-center text-white cursor-pointer rounded-lg w-[100px]"
         >
