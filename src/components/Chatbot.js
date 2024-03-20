@@ -109,7 +109,7 @@ const Chatbot = () => {
             <div className="flex align-items-center gap-3 mt-6 ml-10">
               <img src='/textlogobg.png' width="30" height="30" />
               <h5 className="text-lg font-medium text-black dark:text-white mb-0">
-                IntelliQuest AI Chatbot
+                Questify AI Chatbot
               </h5>
             </div>
             <div className="flex-auto p-6">
