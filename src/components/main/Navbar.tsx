@@ -44,17 +44,20 @@ const Navbar = () => {
         </div>
 
         <div className="md:block hidden">
-        <div className="flex my-auto flex-row gap-5">
-        <button
-        onClick={(e)=> {
-          e.preventDefault();
-          signIn('google', { callbackUrl: process.env.NEXTAUTH_URL });
-      }}
-          className="py-3 button-primary text-center text-white cursor-pointer rounded-lg w-[100px]"
-        >
-          Sign In
-        </button>
-        </div>
+          <div className="flex my-auto flex-row gap-5">
+            <button
+              //   onClick={(e)=> {
+              //     e.preventDefault();
+              //     signIn('google', { callbackUrl: process.env.NEXTAUTH_URL });
+              // }}
+              onClick={() => {
+                signIn();
+              }}
+              className="py-3 button-primary text-center text-white cursor-pointer rounded-lg w-[100px]"
+            >
+              Sign In
+            </button>
+          </div>
         </div>
       </div>
     </div>
