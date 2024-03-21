@@ -33,7 +33,7 @@ const nextConfig = {
           },
           {
             source: `/:path*`,
-            destination: `${API_URL}/:path*`,
+            destination: `${process.env.API_URL}/:path*`,
           },
         ];
       },
