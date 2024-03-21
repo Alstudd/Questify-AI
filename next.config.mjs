@@ -22,21 +22,6 @@ const nextConfig = {
             },
         ],
     },
-    experimental: {
-        serverActions: true,
-    },
-    async rewrites() {
-        return [
-          {
-            source: `/api/:path*`,
-            destination: `/api/:path*`,
-          },
-          {
-            source: `/:path*`,
-            destination: `${process.env.API_URL}/:path*`,
-          },
-        ];
-      },
 };
 
 export default nextConfig;

@@ -50,8 +50,9 @@ const Navbar = () => {
               //     e.preventDefault();
               //     signIn('google', { callbackUrl: process.env.NEXTAUTH_URL });
               // }}
-              onClick={() => {
-                signIn();
+              onClick={(e) => {
+                e.preventDefault();
+                signIn('google', { callbackUrl: process.env.NEXTAUTH_URL });
               }}
               className="py-3 button-primary text-center text-white cursor-pointer rounded-lg w-[100px]"
             >
