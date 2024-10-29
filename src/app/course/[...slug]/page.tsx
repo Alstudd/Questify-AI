@@ -47,7 +47,7 @@ const CoursePage = async ({ params: { slug } }: Props) => {
   return (
     <div>
       <Navbar />
-      <CourseSideBar course={course} currentChapterId={chapter.id} />;
+      <CourseSideBar course={course} currentChapterId={chapter.id} />
       <div>
         <div className="ml-[400px] px-8">
           <div className="flex">
